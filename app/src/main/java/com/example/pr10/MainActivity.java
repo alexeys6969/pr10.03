@@ -3,13 +3,14 @@ package com.example.pr10;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.widget.EditText;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -39,5 +40,21 @@ public class MainActivity extends AppCompatActivity {
                         });
         AlertDialog alert = builder.create();
         alert.show();
+    }
+
+    EditText fio;
+    EditText phone;
+    EditText adress;
+    public void OnArrange(View view) {
+        fio = findViewById(R.id.EtFio);
+        phone = findViewById(R.id.EtPhone);
+        adress = findViewById(R.id.EtAddress);
+
+        if(fio.getText().length() == 0) AlertDialog("Уведомление", "Пожалуйста, укажите ФИО");
+        else if(phone.getText().length() == 0 || !phone.getText().toString().matches("^8 9\\(\\d{3}\\)-\\d{3}-\\d{2}-\\d{2}$")) AlertDialog("Уведомление", "Пожалуйста, укажите корректный номер телефона");
+        else if(adress.getText().length() == 0) AlertDialog("Уведомление", "Пожалуйста, укажите адрес доставки");
+        else {
+            AlertDialog("Уведомление", "Заказ оформлен");
+        }
     }
 }
